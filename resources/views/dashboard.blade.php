@@ -64,4 +64,11 @@ Dashboard
 
   </div>
 </section>
+
+@endsection
+
+@section('section_message')
+    @if (Session::has('message'))
+        <p>{{Session::get('message')}}</p>
+    @endif
 @endsection

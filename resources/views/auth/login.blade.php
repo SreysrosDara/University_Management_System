@@ -1,54 +1,78 @@
-<section class="w-100 px-4 py-5 gradient-custom" style="border-radius: .5rem .5rem 0 0;">
-      <style>
-        .gradient-custom {
-          /* fallback for old browsers */
-          background: #6a11cb;
+@extends('auth.master')
+@section('site-title')
+  Login | Page
+@endsection
 
-          /* Chrome 10-25, Safari 5.1-6 */
-          background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-          /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-          background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+@section('content')
+<style>
+    html,
+        body {
+            height: 100vh;
+            margin: 0;
         }
-      </style>
-      <div class="row d-flex justify-content-center" bis_skin_checked="1">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-6" bis_skin_checked="1">
-          <div class="card bg-dark text-white" style="border-radius: 1rem;" bis_skin_checked="1">
-            <div class="card-body p-5 text-center" bis_skin_checked="1">
+        .btn-custom:hover {
+            background-color:rgb(189, 40, 176); /* Color on hover */
+        }
+        .gradient-custom-3 {
+            /* fallback for old browsers */
+            background:rgb(250, 132, 197);
 
-              <div class="mb-md-5 mt-md-4 pb-5" bis_skin_checked="1">
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(250, 132, 167, 0.5), rgba(148, 110, 250, 0.5));
 
-                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                <p class="text-white-50 mb-5">Please enter your login and password!</p>
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(250, 132, 177, 0.5), rgba(148, 110, 250, 0.5))
+        }
 
-                <div data-mdb-input-init="" class="form-outline form-white mb-4" data-mdb-input-initialized="true" bis_skin_checked="1">
-                  <input type="email" id="typeEmailX" class="form-control form-control-lg">
-                  <label class="form-label" for="typeEmailX" style="margin-left: 0px;">Email</label>
-                <div class="form-notch" bis_skin_checked="1"><div class="form-notch-leading" style="width: 9px;" bis_skin_checked="1"></div><div class="form-notch-middle" style="width: 40px;" bis_skin_checked="1"></div><div class="form-notch-trailing" bis_skin_checked="1"></div></div></div>
+        .gradient-custom-4 {
+            /* fallback for old browsers */
+            background:rgb(250, 132, 197);
 
-                <div data-mdb-input-init="" class="form-outline form-white mb-4" data-mdb-input-initialized="true" bis_skin_checked="1">
-                  <input type="password" id="typePasswordX" class="form-control form-control-lg">
-                  <label class="form-label" for="typePasswordX" style="margin-left: 0px;">Password</label>
-                <div class="form-notch" bis_skin_checked="1"><div class="form-notch-leading" style="width: 9px;" bis_skin_checked="1"></div><div class="form-notch-middle" style="width: 64.8px;" bis_skin_checked="1"></div><div class="form-notch-trailing" bis_skin_checked="1"></div></div></div>
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: -webkit-linear-gradient(to right, rgba(250, 132, 167, 0.5), rgba(148, 110, 250, 0.5));
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: linear-gradient(to right, rgba(250, 132, 177, 0.5), rgba(148, 110, 250, 0.5))
+        }
+  </style>
+  <section class="vh-100 bg-image"
+        style="background-image: url('https://i.pinimg.com/736x/cc/0d/70/cc0d70d0e8ba8564b2185b698bf004ed.jpg ');">
+        @if (Session::has('message'))
+          <p class="text-danger text-center">{{ Session::get('message') }}</p>
+        @endif
+        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+            <div class="container h-100">
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+                                <h2 class="text-uppercase text-center mb-5">Login Your account</h2>
 
-                <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+                                <form action="{{route('submit-login')}}" method="POST" enctype="multipart/form-data" >
+                                  @csrf
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="name_email" name="name_email" class="form-control form-control-lg" />
+                                        <label class="form-label" for="name_email">Username or Email</label>
+                                    </div>
 
-                <button data-mdb-button-init="" data-mdb-ripple-init="" class="btn btn-outline-light btn-lg px-5" type="submit" data-mdb-button-initialized="true">Login</button>
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                        <label class="form-label" for="password">Password</label>
+                                    </div>
 
-                <div class="d-flex justify-content-center text-center mt-4 pt-1" bis_skin_checked="1">
-                  <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-                  <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-                  <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                                    <div class="d-flex justify-content-center">
+                                        <button style="width: 100%;" type="submit" class="btn-custom btn btn-success btn-block btn-lg gradient-custom-4 
+                                        text-body">Login</button></button>
+                                    </div>
+
+                                    <p class="text-center text-muted mt-5 mb-0">Don't have an account? <a href="{{route('register')}}"
+                                            class="fw-bold text-body"><u>Register here</u></a></p>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-              </div>
-
-              <div bis_skin_checked="1">
-                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a></p>
-              </div>
-
             </div>
-          </div>
         </div>
-      </div>
     </section>
+@endsection
