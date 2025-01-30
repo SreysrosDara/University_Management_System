@@ -1,5 +1,29 @@
-.navbar-nav {
-      flex-direction: row; 
-      justify-content: center;
-      font-size: 23px;
+*{
+  font-family: "Playfair Display", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.sidebar {
+  height: 100vh; 
+}
+.nav-link {
+  position: relative; /* Position relative for the hover effect */
+}
+
+.nav-link:hover {
+  color: #03203f4f; /* Change text color on hover */
+}
+
+.nav-link:hover::before {
+  content: ""; /* Create a pseudo-element */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border: 2px solid #010b1654; /* Border color */
+  z-index: -1; /* Send the border behind the text */
+  transform: translateY(-50%); /* Center the border */
+  border-radius: 4px; /* Optional: rounded corners */
 }
