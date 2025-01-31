@@ -11,22 +11,25 @@
         margin: 0;
     }
     .btn-custom:hover {
-        background-color: rgb(189, 40, 176); /* Color on hover */
+        background-color: rgb(228, 217, 227); /* Color on hover */
     }
     .gradient-custom-3 {
-        background: rgb(107, 44, 207);
-        background: -webkit-linear-gradient(to right, rgba(154, 132, 250, 0.5), rgba(148, 110, 250, 0.5));
-        background: linear-gradient(to right, rgba(154, 132, 250, 0.5), rgba(148, 110, 250, 0.5));
+        background: rgb(31, 13, 59);
+        background: -webkit-linear-gradient(to right, rgba(63, 41, 48, 0.5), rgba(49, 43, 66, 0.5));
+        background: linear-gradient(to right, rgba(63, 41, 48, 0.5), rgba(49, 43, 66, 0.5));
     }
     .gradient-custom-4 {
-        background: #84fab0;
-        background: -webkit-linear-gradient(to right, rgba(154, 132, 250, 0.5), rgba(148, 110, 250, 0.5));
-        background: linear-gradient(to right, rgba(154, 132, 250, 0.5), rgba(148, 110, 250, 0.5));
+        background:rgb(30, 49, 37);
+        background: -webkit-linear-gradient(to right, rgba(63, 41, 48, 0.5), rgba(49, 43, 66, 0.5));
+        background: linear-gradient(to right, rgba(63, 41, 48, 0.5), rgba(49, 43, 66, 0.5));
     }
 </style>
 <section class="vh-100 bg-image" style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
-    @if (Session::has('message'))
-       <p class="text-danger text-center">{{ Session::get('message') }}</p>
+    @if (Session::has('success'))
+        <p class="text-success text-center">{{ Session::get('success') }}</p>
+    @endif
+    @if (Session::has('error'))
+        <p class="text-danger text-center">{{ Session::get('error') }}</p>
     @endif
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
@@ -41,16 +44,25 @@
                                 <div class="form-outline mb-4">
                                     <input type="text" id="name" name="name" class="form-control form-control-lg" required />
                                     <label class="form-label" for="name">Please Enter Your Username</label>
+                                    @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="email" id="email" name="email" class="form-control form-control-lg" required />
                                     <label class="form-label" for="email">Please Enter Your Email</label>
+                                    @error('email')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input type="password" id="password" name="password" class="form-control form-control-lg" required />
                                     <label class="form-label" for="password">Please Enter Password</label>
+                                    @error('password')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <div class="form-outline mb-4">

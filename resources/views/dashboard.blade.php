@@ -57,13 +57,6 @@ Dashboard
         </div>
     </div>
 </div>
-<section class="pb-4">
-  <div class="border rounded-5" bis_skin_checked="1">
-    
-    
-
-  </div>
-</section>
 
 @endsection
 
