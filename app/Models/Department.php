@@ -11,6 +11,11 @@ class Department extends Model
 
     protected $table = 'departments';
 
+    protected $fillable = [
+        'department_name',
+        'head_of_department',
+    ];
+
     public function professor(){
         return $this->hasMany(Professor::class,'department_id');
     }

@@ -9,6 +9,7 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('site-title')</title>
 </head>
@@ -26,8 +27,8 @@
         <form id="logout-form" action="{{route('logout')}}" method="POST">
           @csrf
           <a class="nav-link px-3" href="#" onclick="event.preventDefault(); confirmLogout();">Log Out</a>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
   </header>
 
@@ -37,12 +38,12 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item my-2">
-          <a class="nav-link active text-dark" aria-current="page" href="{{route('dashboard')}}">
+            <a class="nav-link active text-dark" aria-current="page" href="{{route('dashboard')}}">
               <h4>Hello, Admin @ {{ Auth::user()->name }}</h4>
             </a>
           </li>
           <li class="nav-item my-2">
-            <a class="nav-link text-dark" href="{{route('enrollment')}}">
+            <a class="nav-link text-dark" href="{{route('enrollments.index')}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="feather feather-file" aria-hidden="true">
@@ -53,7 +54,7 @@
             </a>
           </li>
           <li class="nav-item my-2">
-            <a class="nav-link text-dark" href="{{route('department')}}">
+            <a class="nav-link text-dark" href="{{route('departments.index')}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="feather feather-layers" aria-hidden="true">
@@ -65,7 +66,7 @@
             </a>
           </li>
           <li class="nav-item my-2 ">
-            <a class="nav-link text-dark" href="{{route('student')}}">
+            <a class="nav-link text-dark" href="{{route('students.index')}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="feather feather-users" aria-hidden="true">
@@ -78,7 +79,7 @@
             </a>
           </li>
           <li class="nav-item my-2">
-            <a class="nav-link text-dark" href="{{route('course')}}">
+            <a class="nav-link text-dark" href="{{route('courses.index')}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="feather feather-bar-chart-2" aria-hidden="true">
@@ -89,8 +90,8 @@
               Courses
             </a>
           </li>
-           <li class="nav-item my-2">
-            <a class="nav-link text-dark" href="{{route('professor')}}">
+          <li class="nav-item my-2">
+            <a class="nav-link text-dark" href="{{route('professors.index')}}">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                 class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                 <path
@@ -115,28 +116,30 @@
       <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2"> @yield('title')</h1>
+        @yield('header-button')
       </div>
       @yield('content')
     </main>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  @yield('scripts')
 </body>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
- function confirmLogout() {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You will be logged out of your account.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Log Out',
-            cancelButtonText: 'Cancel',
-            reverseButtons: true,
-        }).then((result) => {
-            if (result.isConfirmed) {
-                document.getElementById('logout-form').submit();
-            }
-        });
-    }
+  function confirmLogout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, log out!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById('logout-form').submit();
+      }
+    });
+  }
 </script>
 </html>

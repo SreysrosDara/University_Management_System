@@ -11,6 +11,13 @@ class Professor extends Model
 
     protected $table = 'professors';
 
+    protected $fillable=[
+        'first_name',
+        'last_name',
+        'email',
+        'department_id',
+    ];
+
     public function department(){
         return $this->belongsTo(Department::class,'department_id');
     }

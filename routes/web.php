@@ -17,20 +17,47 @@ Route::post("/submit-login",[AuthController::class,"submitLogin"])->name("submit
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-     Route::get('/',[DashboardController::class,'index'])->name("dashboard"); 
+     Route::get('/',[DashboardController::class,'index'])->name("dashboard");
 
-     Route::get("/department",[DepartmentController::class,"departmentslist"])->name("department");
-     Route::get("/add-department",[DepartmentController::class,"add_department"])->name("add-department");
+     // ------- [ D E P A R T M E N T ]---------
+     Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+     Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+     Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
+     Route::get('/departments/edit/{id}', [DepartmentController::class, 'edit'])->name('departments.edit');
+     Route::put('/departments/{id}', [DepartmentController::class, 'update'])->name('departments.update');
+     Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
-     Route::get("/course",[CourseController::class,'courseList'])->name('course');
-     Route::get('/addcourse',[CourseController::class,'addcourse'])->name('add-course');
+     // ------- [ C O U R S E ]---------
+     Route::get('/courses',[CourseController::class,'index'])->name('courses.index');
+     Route::get('/courses/create',[CourseController::class,'create'])->name('courses.create');
+     Route::post('/courses',[CourseController::class,'store'])->name('courses.store');
+     Route::get('/courses/edit/{id}',[CourseController::class,'edit'])->name('courses.edit');
+     Route::put('/courses/{id}',[CourseController::class,'update'])->name('courses.update');
+     Route::delete('/course/{id}',[CourseController::class,'destroy'])->name('courses.destroy');
 
-     Route::get("/professor",[ProfessorController::class,'professorList'])->name('professor');
-     Route::get('/addprofessor',[ProfessorController::class,'addprofessor'])->name('add-professor');
+     // ------- [ P R O F E S S O R ]---------
+     Route::get("/professors",[ProfessorController::class,'index'])->name('professors.index');
+     Route::get('/professors/create',[ProfessorController::class,'create'])->name('professors.create');
+     Route::post('/professors',[ProfessorController::class,'store'])->name('professors.store');
+     Route::get('/professor/edit/{id}',[ProfessorController::class,'edit'])->name('professors.edit');
+     Route::put('/professors/{id}',[ProfessorController::class,'update'])->name('professors.update');
+     Route::delete('/professors/{id}',[ProfessorController::class,'destroy'])->name('professors.destroy');
 
-     Route::get("/enrollment",[EntrollmentController::class,'enrollmentList'])->name('enrollment');
-     Route::get('/add-enroll',[EntrollmentController::class,'add_enroll'])->name('add-enroll');
+     // ------- [ S T U D E N T ]---------
+     Route::get("/students",[StudentController::class,"index"])->name("students.index");
+     Route::get('/students/create',[StudentController::class,'create'])->name('students.create');
+     Route::post('/students',[StudentController::class,'store'])->name('students.store');
+     Route::get('/students/detail/{id}', [StudentController::class, 'show'])->name('students.show');
+     Route::get('/students/edit/{id}',[StudentController::class,'edit'])->name('students.edit');
+     Route::put('/students/{id}',[StudentController::class,'update'])->name('students.update');
+     Route::delete("/students/{id}",[StudentController::class,"destroy"])->name("students.destroy");
 
-     Route::get("/student",[StudentController::class,"studentList"])->name("student");
-     Route::get("/addstudent",[StudentController::class,"addstudent"])->name("add-student");
-;});
+     // ------- [ E N R O L L M E N T ]---------
+     Route::get("/enrollments",[EntrollmentController::class,'index'])->name('enrollments.index');
+     Route::get('/enrollments/create',[EntrollmentController::class,'create'])->name('enrollments.create');
+     Route::post('/enrollments',[EntrollmentController::class,'store'])->name('enrollments.store');
+     Route::get('/enrollment/edit/{id}',[EntrollmentController::class,'edit'])->name('enrollments.edit');
+     Route::put('/enrollments/{id}',[EntrollmentController::class,'update'])->name('enrollments.update');
+     Route::delete('/enrollments/{id}',[EntrollmentController::class,'destroy'])->name('enrollments.destroy');
+
+});
